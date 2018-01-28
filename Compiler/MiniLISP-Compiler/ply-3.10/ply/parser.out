@@ -1,0 +1,135 @@
+Created by PLY version 3.9 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    THEN
+    FUN
+    WHILE
+    boolval
+    ELSE
+    NAME
+
+Grammar
+
+Rule 0     S' -> PROGRAM
+Rule 1     PROGRAM -> STMT
+Rule 2     STMT -> EXP
+Rule 3     STMT -> DEF-STMT
+Rule 4     STMT -> PRINT-NUM
+Rule 5     STMT -> PRINT-BOOL
+Rule 6     PRINT-NUM -> LPAREN PRINTNUM EXP RPAREN
+Rule 7     PRINT-BOOL -> LPAREN PRINTBOOL EXP RPAREN
+Rule 8     NUM-OP -> F-PLUS
+Rule 9     NUM-OP -> F-MINUS
+Rule 10    NUM-OP -> F-MULTIPLY
+Rule 11    NUM-OP -> F-DIVIDE
+Rule 12    NUM-OP -> F-MODULUS
+Rule 13    NUM-OP -> F-GREATER
+Rule 14    NUM-OP -> F-SMALLER
+Rule 15    NUM-OP -> F-EQUAL
+Rule 16    F-PLUS -> LPAREN PLUS EXP EXPS RPAREN
+Rule 17    F-MINUS -> LPAREN MINUS EXP EXPS RPAREN
+Rule 18    F-MULTIPLY -> LPAREN MULTIPLY EXP EXPS RPAREN
+Rule 19    F-DIVIDE -> LPAREN DIVIDE EXP EXP RPAREN
+Rule 20    F-MODULUS -> LPAREN MODULE EXP EXP RPAREN
+Rule 21    F-GREATER -> LPAREN GREATER EXP EXP RPAREN
+Rule 22    F-SMALLER -> LPAREN SMALLER EXP EXPS RPAREN
+Rule 23    F-EQUAL -> LPAREN EQUAL EXP EXPS RPAREN
+Rule 24    LOGICAL-OP -> AND-OP
+Rule 25    LOGICAL-OP -> OR-OP
+Rule 26    LOGICAL-OP -> NOT-OP
+Rule 27    AND-OP -> LPAREN AND EXP EXPS RPAREN
+Rule 28    OR-OP -> LPAREN OR EXP EXPS RPAREN
+Rule 29    NOT-OP -> LPAREN NOT EXP RPAREN
+Rule 30    DEF-STMT -> LPAREN DEFINE VARIABLE EXP RPAREN
+Rule 31    VARIABLE -> id
+Rule 32    FUN-EXP -> LPAREN FUN_IDs FUN-BODY RPAREN
+Rule 33    FUN_IDs -> LPAREN id RPAREN
+Rule 34    FUN-BODY -> EXP
+Rule 35    FUN-CALL -> LPAREN FUN-EXP PARAM RPAREN
+Rule 36    FUN-CALL -> FUN-NAME PARAM RPAREN
+Rule 37    PARAM -> EXP
+Rule 38    LAST-EXP -> EXP
+Rule 39    FUN-NAME -> id
+Rule 40    IF-EXP -> LPAREN IF TEST-EXP THEN-EXP ELSE-EXP RPAREN
+Rule 41    TEST-EXP -> EXP
+Rule 42    THEN-EXP -> EXP
+Rule 43    ELSE-EXP -> EXP
+Rule 44    EXPS -> EXPS EXP
+Rule 45    EXPS -> EXP
+Rule 46    EXP -> TRUE
+Rule 47    EXP -> FALSE
+Rule 48    EXP -> VARIABLE
+Rule 49    EXP -> number
+Rule 50    EXP -> NUM-OP
+Rule 51    EXP -> LOGICAL-OP
+Rule 52    EXP -> FUN-EXP
+Rule 53    EXP -> FUN-CALL
+Rule 54    EXP -> IF-EXP
+
+Terminals, with rules where they appear
+
+AND                  : 27
+DEFINE               : 30
+DIVIDE               : 19
+ELSE                 : 
+EQUAL                : 23
+FALSE                : 47
+FUN                  : 
+GREATER              : 21
+IF                   : 40
+LPAREN               : 6 7 16 17 18 19 20 21 22 23 27 28 29 30 32 33 35 40
+MINUS                : 17
+MODULE               : 20
+MULTIPLY             : 18
+NAME                 : 
+NOT                  : 29
+OR                   : 28
+PLUS                 : 16
+PRINTBOOL            : 7
+PRINTNUM             : 6
+RPAREN               : 6 7 16 17 18 19 20 21 22 23 27 28 29 30 32 33 35 36 40
+SMALLER              : 22
+THEN                 : 
+TRUE                 : 46
+WHILE                : 
+boolval              : 
+error                : 
+number               : 49
+
+Nonterminals, with rules where they appear
+
+AND-OP               : 24
+DEF-STMT             : 3
+ELSE-EXP             : 40
+EXP                  : 2 6 7 16 17 18 19 19 20 20 21 21 22 23 27 28 29 30 34 37 38 41 42 43 44 45
+EXPS                 : 16 17 18 22 23 27 28 44
+F-DIVIDE             : 11
+F-EQUAL              : 15
+F-GREATER            : 13
+F-MINUS              : 9
+F-MODULUS            : 12
+F-MULTIPLY           : 10
+F-PLUS               : 8
+F-SMALLER            : 14
+FUN-BODY             : 32
+FUN-CALL             : 53
+FUN-EXP              : 35 52
+FUN-NAME             : 36
+FUN_IDs              : 32
+IF-EXP               : 54
+LAST-EXP             : 
+LOGICAL-OP           : 51
+NOT-OP               : 26
+NUM-OP               : 50
+OR-OP                : 25
+PARAM                : 35 36
+PRINT-BOOL           : 5
+PRINT-NUM            : 4
+PROGRAM              : 0
+STMT                 : 1
+TEST-EXP             : 40
+THEN-EXP             : 40
+VARIABLE             : 30 48
+id                   : 31 33 39
+
