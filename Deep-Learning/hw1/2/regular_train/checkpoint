@@ -1,0 +1,5 @@
+model_checkpoint_path: "regular_training_epoch_10.ckpt"
+all_model_checkpoint_paths: "regular_training_epoch_7.ckpt"
+all_model_checkpoint_paths: "regular_training_epoch_8.ckpt"
+all_model_checkpoint_paths: "regular_training_epoch_9.ckpt"
+all_model_checkpoint_paths: "regular_training_epoch_10.ckpt"
