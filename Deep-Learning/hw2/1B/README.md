@@ -1,5 +1,6 @@
 # MNIST Early Stopping
 ## Output
+```
 Adam, [hidden_layer_100*5][epoch_1000][lr_0.0006][bs_400]<br/>
 Epoch:  1, Validation loss:    1.0061, Best loss:   1.0061, Accuracy: 0.9003, Best Accuracy: 0.9003<br/>
 Epoch:  2, Validation loss:    0.9709, Best loss:   0.9709, Accuracy: 0.9347, Best Accuracy: 0.9347<br/>
@@ -38,3 +39,4 @@ Epoch: 34, Validation loss:    0.9185, Best loss:   0.9185, Accuracy: 0.9859, Be
 Early Stopping at epoch 33<br/>
 Model saved in path: regular_train/[epoch_1000][lr_0.0006][bs_400]-20180418131158/final_model<br/>
 Final test accuracy: 0.9912
+```
