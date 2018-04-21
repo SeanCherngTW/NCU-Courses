@@ -1,26 +1,25 @@
 # coding: utf-8
-
 import time
 import tensorflow as tf
 from datetime import datetime
-from functools import partial
 from keras.utils.np_utils import to_categorical
 from tensorflow.examples.tutorials.mnist import input_data
-mnist = input_data.read_data_sets("../MNIST_data/", one_hot=True)
-X_train = mnist.train.images
-y_train = mnist.train.labels
-X_vali = mnist.validation.images
-y_vali = mnist.validation.labels
-X_test = mnist.test.images
-y_test = mnist.test.labels
-# training = tf.placeholder_with_default(False, shape=(), name='training', dtype=float32)
-# batch_norm_layer = partial(tf.layers.batch_normalization, training=training, momentum=0.9)
+mnist = input_data.read_data_sets("../MNIST_data/")
+X_train1 = mnist.train.images[mnist.train.labels < 5]
+y_train1 = mnist.train.labels[mnist.train.labels < 5]
+X_valid1 = mnist.validation.images[mnist.validation.labels < 5]
+y_valid1 = mnist.validation.labels[mnist.validation.labels < 5]
+X_test1 = mnist.test.images[mnist.test.labels < 5]
+y_test1 = mnist.test.labels[mnist.test.labels < 5]
+y_train1 = to_categorical(y_train1, num_classes=5)
+y_valid1 = to_categorical(y_valid1, num_classes=5)
+y_test1 = to_categorical(y_test1, num_classes=5)
 
 
 def init_input():
     with tf.name_scope('input'):
         X = tf.placeholder('float', [None, 784], name='input_x')
-        y = tf.placeholder('float', [None, 10], name='label_y')
+        y = tf.placeholder('float', [None, 5], name='label_y')
     return X, y
 
 
@@ -67,7 +66,7 @@ def build_network(X, n, activation, batch_normalization=False):
     if batch_normalization:
         h5 = tf.contrib.layers.batch_norm(h5, center=True, scale=True, is_training=True)
 
-    y_hat = add_layer(input_dim=n, output_dim=10, inputs=h5, name='output_layer', activation_function=tf.nn.softmax)
+    y_hat = add_layer(input_dim=n, output_dim=5, inputs=h5, name='output_layer', activation_function=tf.nn.softmax)
     return y_hat
 
 
@@ -123,15 +122,15 @@ def DNN(epoch, n_neurons, learning_rate, activation, batch_size, early_stopping,
 
         for i in range(start_epoch, epoch):
             for j in range(batch):
-                batch_x = X_train[j * batch_size: (j + 1) * batch_size]
-                batch_y = y_train[j * batch_size: (j + 1) * batch_size]
+                batch_x = X_train1[j * batch_size: (j + 1) * batch_size]
+                batch_y = y_train1[j * batch_size: (j + 1) * batch_size]
                 sess.run(optimizer, feed_dict={X: batch_x, y: batch_y})
 
-            result = sess.run(merged, feed_dict={X: X_vali, y: y_vali})
+            result = sess.run(merged, feed_dict={X: X_valid1, y: y_valid1})
             writer.add_summary(result, i + 1)
 
-            vali_loss = sess.run(loss_function, feed_dict={X: X_vali, y: y_vali})
-            vali_acc = sess.run(acc, feed_dict={X: X_vali, y: y_vali})
+            vali_loss = sess.run(loss_function, feed_dict={X: X_valid1, y: y_valid1})
+            vali_acc = sess.run(acc, feed_dict={X: X_valid1, y: y_valid1})
 
             vali_loss_list.append(vali_loss)
             vali_acc_list.append(vali_acc)
@@ -144,11 +143,7 @@ def DNN(epoch, n_neurons, learning_rate, activation, batch_size, early_stopping,
             print("Epoch: %2d, Validation loss: %9.4f, Best loss:%9.4f, Accuracy: %.4f, Best Accuracy: %.4f" %
                   (i + 1, vali_loss, best_vali_loss, vali_acc, best_vali_acc))
 
-            if vali_acc < best_vali_acc:
-                #                 print('Early stopping %d' % n)
-                n += 1
-            else:
-                n = 0
+            n = n + 1 if vali_acc < best_vali_acc else 0
 
             if n > early_stopping:
                 print('Early Stopping at epoch %d' % i)
@@ -158,7 +153,7 @@ def DNN(epoch, n_neurons, learning_rate, activation, batch_size, early_stopping,
         save_path = saver.save(sess, "regular_train/%s/%s" % (training_id, file_name))
         print("Model saved in path: %s" % save_path)
 
-        test_acc = sess.run(acc, feed_dict={X: X_test, y: y_test})
+        test_acc = sess.run(acc, feed_dict={X: X_test1, y: y_test1})
         print("Final test accuracy: %.4f" % test_acc)
 
 
