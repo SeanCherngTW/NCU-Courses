@@ -1,8 +1,10 @@
 # MNIST Dropout
 ## Summary
-keep_prob: 1.0 -> train_acc = 0.9972, test_acc = 0.9905<br/>
-keep_prob: 0.9 -> train_acc = 0.9948, test_acc = 0.9909<br/>
-keep_prob: 0.7 -> train_acc = 0.9877, test_acc = 0.9862<br/>
+```
+keep_prob: 1.0 -> train_acc = 0.9972, test_acc = 0.9905
+keep_prob: 0.9 -> train_acc = 0.9948, test_acc = 0.9909
+keep_prob: 0.7 -> train_acc = 0.9877, test_acc = 0.9862
+```
 
 ## Output
 ```
@@ -73,7 +75,7 @@ Early Stopping at epoch 29
 Model saved in path: regular_train/[n_neurons_100, learning_rate_0.1000, activation_<function relu at 0x11533c6a8>, batch_size_100, keep_prob_0.9]-20180421041920/final_model
 Final: Train acc: 0.9948, Test acc: 0.9909, Difference: 0.0040
 ```
-``
+```
 [n_neurons_100, learning_rate_0.1000, activation_<function relu at 0x11533c6a8>, batch_size_100, keep_prob_0.7]
 Epoch:  1, Train acc: 0.9267, Validation acc: 0.9249
 Epoch:  2, Train acc: 0.9502, Validation acc: 0.9547

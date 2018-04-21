@@ -1,8 +1,10 @@
 # MNIST Batch Normalization
 ## Summary
-Test Acc<br/>
-Without Batch Normalization: 0.5236<br/>
-With Batch Normalization: 0.9803<br/>
+```
+Test Acc
+Without Batch Normalization: 0.5236
+With Batch Normalization: 0.9803
+```
 ## Output
 ```
 [n_neurons_100, learning_rate_0.0040, activation_<function elu at 0x1123d70d0>, batch_size_400, batch_normalization_False]
