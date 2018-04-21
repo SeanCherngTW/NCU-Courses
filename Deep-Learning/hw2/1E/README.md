@@ -1,8 +1,8 @@
 # MNIST Dropout
 ## Summary
-keep_prob: 1.0 -> train_acc = 0.9972, test_acc = 0.9905
-keep_prob: 0.9 -> train_acc = 0.9948, test_acc = 0.9909
-keep_prob: 0.7 -> train_acc = 0.9877, test_acc = 0.9862
+keep_prob: 1.0 -> train_acc = 0.9972, test_acc = 0.9905<br/>
+keep_prob: 0.9 -> train_acc = 0.9948, test_acc = 0.9909<br/>
+keep_prob: 0.7 -> train_acc = 0.9877, test_acc = 0.9862<br/>
 
 ## Output
 [n_neurons_100, learning_rate_0.1000, activation_<function relu at 0x11533c6a8>, batch_size_100, keep_prob_1.0]<br/>
