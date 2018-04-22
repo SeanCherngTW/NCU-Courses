@@ -1,0 +1,6 @@
+model_checkpoint_path: "regular_training_epoch_testacc_16.ckpt"
+all_model_checkpoint_paths: "regular_training_epoch_testacc_12.ckpt"
+all_model_checkpoint_paths: "regular_training_epoch_testacc_13.ckpt"
+all_model_checkpoint_paths: "regular_training_epoch_testacc_14.ckpt"
+all_model_checkpoint_paths: "regular_training_epoch_testacc_15.ckpt"
+all_model_checkpoint_paths: "regular_training_epoch_testacc_16.ckpt"

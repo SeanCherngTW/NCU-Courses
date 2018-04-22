@@ -1,0 +1,6 @@
+model_checkpoint_path: "final_model"
+all_model_checkpoint_paths: "regular_training_epoch_29.ckpt"
+all_model_checkpoint_paths: "regular_training_epoch_34.ckpt"
+all_model_checkpoint_paths: "regular_training_epoch_35.ckpt"
+all_model_checkpoint_paths: "regular_training_epoch_36.ckpt"
+all_model_checkpoint_paths: "final_model"
