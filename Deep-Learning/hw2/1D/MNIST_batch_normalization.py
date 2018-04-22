@@ -1,4 +1,5 @@
 # coding: utf-8
+
 import time
 import tensorflow as tf
 from datetime import datetime
@@ -48,22 +49,27 @@ def add_layer(input_dim, output_dim, inputs, name, activation_function=None):
 def build_network(X, n, activation, batch_normalization=False):
     h1 = add_layer(input_dim=784, output_dim=n, inputs=X, name='hidden_layer_1', activation_function=activation)
     if batch_normalization:
-        h1 = tf.layers.batch_normalization(h1)
+        #         h1 = tf.layers.batch_normalization(h1, training=True)
+        h1 = tf.contrib.layers.batch_norm(h1, center=True, scale=True, is_training=True)
 
     h2 = add_layer(input_dim=n, output_dim=n, inputs=h1, name='hidden_layer_2', activation_function=activation)
     if batch_normalization:
+        #         h2 = tf.layers.batch_normalization(h2, training=True)
         h2 = tf.contrib.layers.batch_norm(h2, center=True, scale=True, is_training=True)
 
     h3 = add_layer(input_dim=n, output_dim=n, inputs=h2, name='hidden_layer_3', activation_function=activation)
     if batch_normalization:
+        #         h3 = tf.layers.batch_normalization(h3, training=True)
         h3 = tf.contrib.layers.batch_norm(h3, center=True, scale=True, is_training=True)
 
     h4 = add_layer(input_dim=n, output_dim=n, inputs=h3, name='hidden_layer_4', activation_function=activation)
     if batch_normalization:
+        #         h4 = tf.layers.batch_normalization(h4, training=True)
         h4 = tf.contrib.layers.batch_norm(h4, center=True, scale=True, is_training=True)
 
     h5 = add_layer(input_dim=n, output_dim=n, inputs=h4, name='hidden_layer_5', activation_function=activation)
     if batch_normalization:
+        #         h5 = tf.layers.batch_normalization(h5, training=True)
         h5 = tf.contrib.layers.batch_norm(h5, center=True, scale=True, is_training=True)
 
     y_hat = add_layer(input_dim=n, output_dim=5, inputs=h5, name='output_layer', activation_function=tf.nn.softmax)
@@ -146,7 +152,7 @@ def DNN(epoch, n_neurons, learning_rate, activation, batch_size, early_stopping,
             n = n + 1 if vali_acc < best_vali_acc else 0
 
             if n > early_stopping:
-                print('Early Stopping at epoch %d' % i)
+                print('Early Stopping at epoch %d' % (i + 1))
                 break
 
         file_name = 'final_model'
@@ -155,9 +161,3 @@ def DNN(epoch, n_neurons, learning_rate, activation, batch_size, early_stopping,
 
         test_acc = sess.run(acc, feed_dict={X: X_test1, y: y_test1})
         print("Final test accuracy: %.4f" % test_acc)
-
-
-DNN(epoch=1000, n_neurons=100, learning_rate=0.004, activation=tf.nn.elu,
-    batch_size=400, early_stopping=30, batch_normalization=False)
-DNN(epoch=1000, n_neurons=100, learning_rate=0.004, activation=tf.nn.elu,
-    batch_size=400, early_stopping=10, batch_normalization=True)
