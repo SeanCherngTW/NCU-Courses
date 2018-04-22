@@ -69,11 +69,13 @@ def build_network(X, n, activation, keep_prob, batch_normalization=False):
     if batch_normalization:
         h4 = tf.contrib.layers.batch_norm(h4, center=True, scale=True, is_training=True)
 
-    h5 = add_layer(input_dim=n, output_dim=n, inputs=h4, name='hidden_layer_5', keep_prob=1.0, activation_function=activation)
+    h5 = add_layer(input_dim=n, output_dim=n, inputs=h4, name='hidden_layer_5',
+                   keep_prob=keep_prob, activation_function=activation)
     if batch_normalization:
         h5 = tf.contrib.layers.batch_norm(h5, center=True, scale=True, is_training=True)
 
-    y_hat = add_layer(input_dim=n, output_dim=5, inputs=h5, name='output_layer', keep_prob=1.0, activation_function=tf.nn.softmax)
+    y_hat = add_layer(input_dim=n, output_dim=5, inputs=h5, name='output_layer',
+                      keep_prob=keep_prob, activation_function=tf.nn.softmax)
     return y_hat
 
 
@@ -154,7 +156,7 @@ def DNN(epoch, n_neurons, learning_rate, activation, batch_size, early_stopping,
             n = n + 1 if vali_acc < best_vali_acc else 0
 
             if n > early_stopping:
-                print('Early Stopping at epoch %d' % i)
+                print('Early Stopping at epoch %d' % (i + 1))
                 break
 
         file_name = 'final_model'
@@ -177,12 +179,9 @@ def show_train_history(train_acc, vali_acc, keep_prob):
     plt.show()
 
 
-t1, v1 = DNN(epoch=30, n_neurons=100, learning_rate=0.1, activation=tf.nn.relu,
-             batch_size=100, early_stopping=10, keep_prob=1.0, batch_normalization=True)
-t2, v2 = DNN(epoch=30, n_neurons=100, learning_rate=0.1, activation=tf.nn.relu,
-             batch_size=100, early_stopping=10, keep_prob=0.9, batch_normalization=True)
-t3, v3 = DNN(epoch=30, n_neurons=100, learning_rate=0.1, activation=tf.nn.relu,
-             batch_size=100, early_stopping=10, keep_prob=0.7, batch_normalization=True)
-show_train_history(t1, v1, 1.0)
-show_train_history(t2, v2, 0.9)
-show_train_history(t3, v3, 0.7)
+t1, v1 = DNN(epoch=100, n_neurons=100, learning_rate=0.1, activation=tf.nn.relu,
+             batch_size=100, early_stopping=10, keep_prob=1.00, batch_normalization=True)
+t2, v2 = DNN(epoch=100, n_neurons=100, learning_rate=0.1, activation=tf.nn.relu,
+             batch_size=100, early_stopping=10, keep_prob=0.95, batch_normalization=True)
+show_train_history(t1, v1, 1.00)
+show_train_history(t2, v2, 0.95)
