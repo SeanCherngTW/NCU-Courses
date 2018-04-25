@@ -1,9 +1,32 @@
 # MNIST Transfer Learning
 Restore the model from 1E and train MNIST data 5-9 (100 images per digit)
 Using the concept of transfer learning to evaluate the performance
+
+freeze: hidden_layer_1 to hidden_layer_5
+trainable: output_layer
+
+## Summary of 2B, 2D, 2E
+### 2B
+```
+freeze: hidden_layer_1 to hidden_layer_5
+trainable: output_layer
+test accuracy: 0.7488
+```
+### 2D
+```
+freeze: hidden_layer_1 to hidden_layer_4
+trainable: hidden_layer_5 and output_layer
+test accuracy: 0.7743
+```
+### 2E
+```
+freeze: hidden_layer_1 to hidden_layer_3
+trainable: hidden_layer_4, hidden_layer_5, output_layer
+test accuracy: 0.7953
+```
 ## Output
 ```
-[n_neurons_100, learning_rate_0.1000, activation_<function relu at 0x1048876a8>, batch_size_100, batch_normalization_True]
+[n_neurons_100, learning_rate_0.1000, activation_<function relu at 0x11536a6a8>, batch_size_100, batch_normalization_True]
 INFO:tensorflow:Restoring parameters from ./previous_model/final_model.ckpt
 Epoch:   1, Validation loss: 1.5522, Best loss: 1.5522, Accuracy: 0.3346, Best Accuracy:0.3346
 Epoch:   2, Validation loss: 1.5501, Best loss: 1.5501, Accuracy: 0.3370, Best Accuracy:0.3370
@@ -207,7 +230,27 @@ Epoch: 199, Validation loss: 1.1645, Best loss: 1.1656, Accuracy: 0.7588, Best A
 Epoch: 200, Validation loss: 1.1644, Best loss: 1.1656, Accuracy: 0.7588, Best Accuracy:0.7604
 Epoch: 201, Validation loss: 1.1643, Best loss: 1.1656, Accuracy: 0.7588, Best Accuracy:0.7604
 Epoch: 202, Validation loss: 1.1642, Best loss: 1.1656, Accuracy: 0.7592, Best Accuracy:0.7604
-Early Stopping at epoch 202
-Total training time: 14.9s
-Final test accuracy: 0.7449
+Epoch: 203, Validation loss: 1.1640, Best loss: 1.1656, Accuracy: 0.7588, Best Accuracy:0.7604
+Epoch: 204, Validation loss: 1.1639, Best loss: 1.1656, Accuracy: 0.7584, Best Accuracy:0.7604
+Epoch: 205, Validation loss: 1.1638, Best loss: 1.1656, Accuracy: 0.7584, Best Accuracy:0.7604
+Epoch: 206, Validation loss: 1.1637, Best loss: 1.1656, Accuracy: 0.7584, Best Accuracy:0.7604
+Epoch: 207, Validation loss: 1.1636, Best loss: 1.1656, Accuracy: 0.7592, Best Accuracy:0.7604
+Epoch: 208, Validation loss: 1.1635, Best loss: 1.1656, Accuracy: 0.7588, Best Accuracy:0.7604
+Epoch: 209, Validation loss: 1.1634, Best loss: 1.1656, Accuracy: 0.7580, Best Accuracy:0.7604
+Epoch: 210, Validation loss: 1.1633, Best loss: 1.1656, Accuracy: 0.7572, Best Accuracy:0.7604
+Epoch: 211, Validation loss: 1.1632, Best loss: 1.1656, Accuracy: 0.7572, Best Accuracy:0.7604
+Epoch: 212, Validation loss: 1.1632, Best loss: 1.1656, Accuracy: 0.7576, Best Accuracy:0.7604
+Epoch: 213, Validation loss: 1.1631, Best loss: 1.1656, Accuracy: 0.7576, Best Accuracy:0.7604
+Epoch: 214, Validation loss: 1.1630, Best loss: 1.1656, Accuracy: 0.7568, Best Accuracy:0.7604
+Epoch: 215, Validation loss: 1.1629, Best loss: 1.1656, Accuracy: 0.7563, Best Accuracy:0.7604
+Epoch: 216, Validation loss: 1.1628, Best loss: 1.1656, Accuracy: 0.7555, Best Accuracy:0.7604
+Epoch: 217, Validation loss: 1.1628, Best loss: 1.1656, Accuracy: 0.7555, Best Accuracy:0.7604
+Epoch: 218, Validation loss: 1.1627, Best loss: 1.1656, Accuracy: 0.7559, Best Accuracy:0.7604
+Epoch: 219, Validation loss: 1.1626, Best loss: 1.1656, Accuracy: 0.7555, Best Accuracy:0.7604
+Epoch: 220, Validation loss: 1.1626, Best loss: 1.1656, Accuracy: 0.7551, Best Accuracy:0.7604
+Epoch: 221, Validation loss: 1.1625, Best loss: 1.1656, Accuracy: 0.7555, Best Accuracy:0.7604
+Epoch: 222, Validation loss: 1.1625, Best loss: 1.1656, Accuracy: 0.7547, Best Accuracy:0.7604
+Early Stopping at epoch 222
+Total training time: 15.6s
+Final test accuracy: 0.7488
 ```
