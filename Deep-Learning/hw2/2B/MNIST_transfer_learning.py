@@ -99,8 +99,8 @@ def DNN(epoch, n_neurons, learning_rate, activation, batch_size, early_stopping,
 
         for i in range(epoch):
             for j in range(batch):
-                batch_x = X_train2_full[j * batch_size: (j + 1) * batch_size]
-                batch_y = y_train2_full[j * batch_size: (j + 1) * batch_size]
+                batch_x = X_train2_100[j * batch_size: (j + 1) * batch_size]
+                batch_y = y_train2_100[j * batch_size: (j + 1) * batch_size]
                 sess.run(training_op, feed_dict={X: batch_x, y: batch_y})
 
 #             result = sess.run(merged, feed_dict={X: X_valid2_full, y: y_valid2_full})
