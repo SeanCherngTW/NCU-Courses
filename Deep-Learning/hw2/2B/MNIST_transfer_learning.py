@@ -26,6 +26,33 @@ y_test2 = mnist.test.labels[mnist.test.labels >= 5] - 5
 
 y_valid2_full = to_categorical(y_valid2_full, num_classes=5)
 y_test2 = to_categorical(y_test2, num_classes=5)
+
+import time
+import struct
+import pprint
+import numpy as np
+import tensorflow as tf
+import matplotlib.pyplot as plt
+from datetime import datetime
+from keras.utils.np_utils import to_categorical
+from tensorflow.examples.tutorials.mnist import input_data
+mnist = input_data.read_data_sets("../MNIST_data/")
+
+# Digit 0-4
+X_test1 = mnist.test.images[mnist.test.labels < 5]
+y_test1 = mnist.test.labels[mnist.test.labels < 5]
+y_test1 = to_categorical(y_test1, num_classes=5)
+
+# Digit 5-9
+X_train2_full = mnist.train.images[mnist.train.labels >= 5]
+y_train2_full = mnist.train.labels[mnist.train.labels >= 5] - 5
+X_valid2_full = mnist.validation.images[mnist.validation.labels >= 5]
+y_valid2_full = mnist.validation.labels[mnist.validation.labels >= 5] - 5
+X_test2 = mnist.test.images[mnist.test.labels >= 5]
+y_test2 = mnist.test.labels[mnist.test.labels >= 5] - 5
+
+y_valid2_full = to_categorical(y_valid2_full, num_classes=5)
+y_test2 = to_categorical(y_test2, num_classes=5)
 image_per_digit = [100, 100, 100, 100, 100]  # 5-9
 X_train2_100 = []
 y_train2_100 = []
@@ -137,4 +164,4 @@ def DNN(epoch, n_neurons, learning_rate, activation, batch_size, early_stopping,
 
 
 DNN(epoch=1000, n_neurons=100, learning_rate=0.1, activation=tf.nn.relu,
-    batch_size=100, early_stopping=10, keep_prob=1.00, batch_normalization=True)
+    batch_size=100, early_stopping=30, keep_prob=1.00, batch_normalization=True)
