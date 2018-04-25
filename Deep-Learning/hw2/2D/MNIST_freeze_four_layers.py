@@ -55,13 +55,12 @@ def show_img_label():
 show_img_label()
 
 
-def DNN(epoch, n_neurons, learning_rate, activation, batch_size, early_stopping, keep_prob=1.0, batch_normalization=False, restore_model_name=None):
+def DNN(epoch, learning_rate, batch_size, early_stopping):
     tf.reset_default_graph()
 
-    restore_saver = tf.train.import_meta_graph("./previous_model/final_model.ckpt.meta")
+    restore_saver = tf.train.import_meta_graph("./previous_model/final_model.meta")
 
-    training_id = '[n_neurons_%d, learning_rate_%.4f, activation_%s, batch_size_%d, batch_normalization_%s]' % (
-        n_neurons, learning_rate, activation, batch_size, batch_normalization)
+    training_id = '[learning_rate_%.4f, batch_size_%d, early_stopping_%d]' % (learning_rate, batch_size, early_stopping)
     print(training_id)
     training_id += "-" + datetime.utcnow().strftime("%Y%m%d%H%M%S")
     logdir = "tf_logs/{}/".format(training_id)
@@ -87,11 +86,11 @@ def DNN(epoch, n_neurons, learning_rate, activation, batch_size, early_stopping,
     best_vali_acc = 0.0
     best_vali_loss = 999.9
 
-    saver = tf.train.Saver()
+#     saver = tf.train.Saver()
 
     with tf.Session() as sess:
         sess.run(tf.global_variables_initializer())
-        restore_saver.restore(sess, "./previous_model/final_model.ckpt")
+        restore_saver.restore(sess, "./previous_model/final_model")
 
         t0 = time.time()
 
@@ -130,12 +129,11 @@ def DNN(epoch, n_neurons, learning_rate, activation, batch_size, early_stopping,
         print("Total training time: {:.1f}s".format(t1 - t0))
 
         file_name = 'final_model'
-        save_path = saver.save(sess, "regular_train/%s/%s" % (training_id, file_name))
+        save_path = restore_saver.save(sess, "regular_train/%s/%s" % (training_id, file_name))
 #         print("Model saved in path: %s" % save_path)
 
         test_acc = sess.run(acc, feed_dict={X: X_test2, y: y_test2})
         print("Final test accuracy: %.4f" % test_acc)
 
 
-DNN(epoch=1000, n_neurons=100, learning_rate=0.1, activation=tf.nn.relu,
-    batch_size=100, early_stopping=30, keep_prob=1.00, batch_normalization=True)
+DNN(epoch=1000, learning_rate=0.9, batch_size=50, early_stopping=30)
