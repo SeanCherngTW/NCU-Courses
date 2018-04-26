@@ -43,7 +43,7 @@ def add_layer(input_dim, output_dim, inputs, name, keep_prob, activation_functio
         if activation_function is None:
             outputs = Wx_plus_b
         else:
-            outputs = activation_function(Wx_plus_b)
+            outputs = activation_function(Wx_plus_b, name='Wx_plus_b_af')
         tf.summary.histogram(name + '/output', outputs)
         return outputs
 
