@@ -14,21 +14,21 @@ Execute
 $ ./MNIST_multiGPU.py 3 3
 For testcase 1:
 [steps] [batch size] [learning rate] [h1 dim]
-3000 150 0.001 1024
+3000 150 0.001 1000
 For testcase 2:
 [steps] [batch size] [learning rate] [h1 dim]
-3000 100 0.002 512
+3000 500 0.003 256
 For testcase 3:
 [steps] [batch size] [learning rate] [h1 dim]
-3000 200 0.0005 256
+3000 500 0.003 1000
 ```
 
 Output
 ```
 ----------Test cases----------
 [training_steps, batch_size, learning_rate, h1_dim] -> test_acc
-['3000', '150', '0.001', '1024'] -> 0.9771 (best model)
-['3000', '100', '0.002', '512'] -> 0.9718
-['3000', '200', '0.0005', '256'] -> 0.9703
+['3000', '150', '0.001', '1000'] -> 0.9723
+['3000', '500', '0.003', '256'] -> 0.9784
+['3000', '500', '0.003', '1000'] -> 0.9813 (best model)
 ```
 
